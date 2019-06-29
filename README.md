@@ -1,6 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Run locally:
 
-## Available Scripts
+```
+git clone https://github.com/alexthedar/movie-react.git
+cd movie-react
+npm install
+npm start 
+```
+
+## Unit Test
+
+```
+npm test
+```
+to include a coverage report use the following command (include the extra -- between test and --coverage): 
+```
+npm test -- --coverage
+```
+
+## e2e Test
+
+```
+npm test:e2e
+```
+
+### Acceptance Criteria
+
+1. Allow a user to be able to search for a movie given a search string
+2. Manage the storage and retrieving of data using Redux
+3. Display results in a grid format
+4. Create production quality code
+5. Return a link to a repo of code
+6. BONUS POINTS - Make the UI more attractive
+
+
+---
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  This project only uses the start and test react-scripts that come included with create-react-app however CRA includes build and eject as well.  I have included the 'create-react-app' below for reference.
+
+Running eject may cause app to fail.
+
+### Available create-react-app Scripts
 
 In the project directory, you can run:
 
