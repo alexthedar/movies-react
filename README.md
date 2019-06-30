@@ -35,6 +35,13 @@ npm test:e2e
 
 ---
 
+### Stocks-react
+This project uses parts recycled from my [stocks-react](https://github.com/alexthedar/stocks-react) repo.  Stocks-react uses the iex api to GET and display top 100 stocks on the iex market.  It also allows the user to search for stocks using stock symbols.
+
+
+---
+
+### Create-react-app
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  This project only uses the start and test react-scripts that come included with create-react-app however CRA includes build and eject as well.  I have included the 'create-react-app' below for reference.
 
 ### Available create-react-app Scripts
