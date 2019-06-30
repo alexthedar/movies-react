@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import { createLogger } from "redux-logger"; // eslint-disable-line import/no-extraneous-dependencies
 import thunk from "redux-thunk";
-import rootReducer from "./reducers/rootReducers";
+import rootReducer from "./reducers/rootReducer";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"

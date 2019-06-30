@@ -3,7 +3,7 @@ import { updateObject } from "../../shared/updateObject";
 
 export const initialState = {
   error: '',
-  isFetching: 0,
+  isFetching: false,
 };
 
 const setError = (state, action) =>

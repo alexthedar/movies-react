@@ -2,22 +2,27 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import asyncComponent from "./hoc/asyncComponent";
-import * as actions from "./store/actions/index";
 import Layout from "./hoc/Layout";
-import Home from './containers/Home'
+import asyncComponent from "./hoc/asyncComponent";
+import Home from "./containers/Home";
+import Market from "./containers/Market";
+import * as actions from "./store/actions/index";
 
-// const asyncStockDetail = asyncComponent(() => {
-//   return import("./containers/stock-detail");
-// });
+const asyncStockDetail = asyncComponent(() => {
+  return import("./containers/stock-detail");
+});
 
 class App extends Component {
+  componentDidMount() {
+    const { getRefSymbols } = this.props;
+    getRefSymbols();
+  }
   render() {
     let routes = (
       <Switch>
-        {/* <Route path="/stock/:symbol" component={asyncStockDetail} /> */}
-        {/* <Route exact path="/" component={MarketTable} /> */}
-        <Route exact path="/" component={Home} />
+        <Route path="/stock/:symbol" component={asyncStockDetail} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={Market} />
         <Redirect to="/" />
       </Switch>
     );
