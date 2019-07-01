@@ -1,7 +1,6 @@
 import React from "react";
 import { Table, Image } from "react-bootstrap";
 import { connect } from "react-redux";
-import * as actions from "../store/actions/index";
 import PageNumbers from "../components/PageNumbers";
 
 const columnsTops = [
@@ -40,15 +39,16 @@ const tableRow = data =>
 const tableHeader = () =>
   columnsTops.map(column => <th key={column.id}>{column.header}</th>);
 
-export const MovieTable = ({ moviesList, totalPages }) => {
+export const MovieTable = ({ moviesList, totalPages, activePage }) => {
   return (
     <React.Fragment>
+      {totalPages > 1 && <PageNumbers />}
       <Table bordered hover responsive="lg">
         <thead>
           <tr>{tableHeader()}</tr>
         </thead>
         <tbody>
-          {moviesList.map(row => (
+          {moviesList[activePage].map(row => (
             <tr key={row.id}>{tableRow(row)}</tr>
           ))}
         </tbody>
@@ -58,20 +58,13 @@ export const MovieTable = ({ moviesList, totalPages }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadMovies: (queryString, activePage) =>
-      dispatch(actions.getMovies({ queryString, activePage }))
-  };
-};
-
 export function mapStateToProps(state) {
   const { moviesList } = state.movies;
-  const { totalPages } = state.search;
-  return { moviesList, totalPages };
+  const { totalPages, activePage } = state.search;
+  return { moviesList, totalPages, activePage };
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(MovieTable);

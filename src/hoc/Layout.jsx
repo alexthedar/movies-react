@@ -8,20 +8,26 @@ const generateAppContents = props => {
 
   if (error) {
     return (
-      <Alert dismissible variant="danger">
+      <Alert variant="danger">
         <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+        <br />
+        <div>
+          <h3>{error}</h3>
+        </div>
+        <br />
         <p>
-          <strong>Error Message: </strong>
-          {error}
+          Please refresh the page and try again. If problem persists please
+          constant site administrator
         </p>
-        <p>Please try refreshing the page.</p>
       </Alert>
     );
   } else if (isFetching) {
     return (
-      <Spinner animation="border" role="status">
-        <span className="sr-only">Loading...</span>
-      </Spinner>
+      <div style={{ position: "fixed", top: "10%", left: "50%" }}>
+        <Spinner animation="border" role="status" variant="primary" size="lg">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
     );
   }
 

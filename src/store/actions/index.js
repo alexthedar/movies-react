@@ -1,4 +1,9 @@
-export { fetchMovies, setMoviesList, getMovies } from "./moviesActions";
+export {
+  fetchMovies,
+  setMoviesList,
+  getNewPageMovieSearch,
+  getMovieSearch
+} from "./moviesActions";
 
 export {
   setQueryString,

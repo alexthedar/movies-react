@@ -25,15 +25,19 @@ export const setTotalPages = totalPages => {
 export const searchMovies = queryString => {
   return dispatch => {
     dispatch(setQueryString(queryString));
-    return dispatch(actions.getMovies({ queryString }));
+    return dispatch(actions.getMovieSearch({ queryString }));
   };
 };
 
-export const goToPage = newPageNumber => {
+export const goToPage = newPage => {
   return (dispatch, getState) => {
     const { queryString } = getState().search;
-    return dispatch(
-      actions.getMovies({ queryString, activePage: newPageNumber })
-    );
+    const { moviesList } = getState().movies;
+    if (moviesList[newPage].length) {
+      return dispatch(actions.setActivePage(newPage));
+    } else {
+      dispatch(actions.setLoading(true));
+      return dispatch(actions.getNewPageMovieSearch({ queryString, newPage }));
+    }
   };
 };
