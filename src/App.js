@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Layout from "./hoc/Layout";
 import asyncComponent from "./hoc/asyncComponent";
 import Home from "./containers/Home";
-import Market from "./containers/Market";
+import MovieTable from "./containers/MovieTable";
 import * as actions from "./store/actions/index";
 
 const asyncStockDetail = asyncComponent(() => {
@@ -22,7 +22,7 @@ class App extends Component {
       <Switch>
         <Route path="/stock/:symbol" component={asyncStockDetail} />
         <Route exact path="/home" component={Home} />
-        <Route exact path="/" component={Market} />
+        <Route exact path="/" component={MovieTable} />
         <Redirect to="/" />
       </Switch>
     );

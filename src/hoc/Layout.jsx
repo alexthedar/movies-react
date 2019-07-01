@@ -39,7 +39,7 @@ export const Layout = props => {
         sticky="top"
       >
         <Container>
-          <Navbar.Brand href="/">Market</Navbar.Brand>
+          <Navbar.Brand href="/">Movies For Jeff</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto" />

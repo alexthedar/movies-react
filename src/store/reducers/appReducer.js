@@ -2,8 +2,10 @@ import * as constants from "../constants";
 import { updateObject } from "../../shared/updateObject";
 
 export const initialState = {
-  error: '',
+  error: "",
   isFetching: false,
+  activePage: 1,
+  totalPages: 5
 };
 
 const setError = (state, action) =>
