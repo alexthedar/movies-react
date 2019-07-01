@@ -25,64 +25,6 @@ const getMoviesPath = (path, options) => {
   }
 };
 
-const getPosterSize = (size) => {
-  switch (size) {
-    case "xs":
-      return "w92";
-    case "sm":
-      return `w185`;
-    case "md":
-      return "w342";
-    case "lg":
-      return "w500";
-    case "xl":
-      return "w780";
-    default:
-      return "original";
-  }
-}
-
-const getStillSize = (size) => {
-  switch (size) {
-    case "sm":
-      return "w92";
-    case "md":
-      return `w185`;
-    case "lg":
-      return "w300";
-    default:
-      return "original";
-  }
-}
-
-const getBackdropSize = (size) => {
-  switch (size) {
-    case "sm":
-      return "w300";
-    case "md":
-      return "w780";
-    case "lg":
-      return "w1280";
-    default:
-      return "original";
-  }
-}
-
-const getImageSize = (options) => {
-  switch (options.type) {
-    case "poster":
-      return getPosterSize(options.size);
-    case "still":
-      return getStillSize(options.size);
-    case "backdrop":
-      return getBackdropSize(options.size);
-    default:
-      return getPosterSize(options.size);
-  }
-}
-
-
-
 //
 // get
 //
@@ -92,7 +34,7 @@ export const get = (path, options) => {
     .get(url)
     .then(function(response) {
       console.log("HERE", response.data.results);
-      return response.data.results
+      return response.data.results;
     })
     .catch(function(error) {
       // handle error
@@ -107,4 +49,3 @@ export const get = (path, options) => {
 export const getImage = (path, options) => {
   return `${imageBaseURL}${getImageSize(options)}${path}`;
 };
-

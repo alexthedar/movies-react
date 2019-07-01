@@ -12,8 +12,9 @@ const columnsTops = [
 ];
 
 const image = path => {
+  const url = `https://image.tmdb.org/t/p/w92/${path}`;
   if (path !== null) {
-    return <Image src={getImage(path, { type: "poster", size: "xs" })} fluid />;
+    return <Image src={url} fluid />;
   } else {
     return "No Image";
   }
