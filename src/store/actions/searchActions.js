@@ -29,4 +29,11 @@ export const searchMovies = queryString => {
   };
 };
 
-export const goToPage = pageNumber => {};
+export const goToPage = newPageNumber => {
+  return (dispatch, getState) => {
+    const { queryString } = getState().search;
+    return dispatch(
+      actions.getMovies({ queryString, activePage: newPageNumber })
+    );
+  };
+};

@@ -16,13 +16,14 @@ export const setMoviesList = movies => {
 };
 
 export const getMovies = ({ queryString, activePage }) => {
-  return dispatch =>
-    Promise.resolve(movieDb.get({ queryString, activePage }))
+  return dispatch => {
+    dispatch(fetchMovies());
+    return Promise.resolve(movieDb.get({ queryString, activePage }))
       .then(res => {
-        console.log("actions", res);
-        dispatch(fetchMovies());
-        // dispatch(setSearchData(res.data));
+        dispatch(actions.setActivePage(res.page));
+        dispatch(actions.setTotalPages(res.total_pages));
         return dispatch(setMoviesList(res.results));
       })
       .catch(error => dispatch(actions.setError(error)));
+  };
 };
