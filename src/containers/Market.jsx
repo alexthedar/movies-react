@@ -1,17 +1,30 @@
 import React, { Component } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
+import { getImage } from "../api/moviedb";
 
 const columnsTops = [
   { id: "poster_path", header: "Poster" },
   { id: "original_title", header: "Title" },
   { id: "release_date", header: "Release Date" },
-  { id: "overview", header: "Summary" },
+  { id: "overview", header: "Summary" }
 ];
 
+const image = path => {
+  if (path !== null) {
+    return <Image src={getImage(path, { type: "poster", size: "xs" })} fluid />;
+  } else {
+    return "No Image";
+  }
+};
+
 const tableRow = (columns, data) =>
-  columns.map(column => <td key={column.id}>{data[column.id]}</td>);
+  columns.map(column => (
+    <td key={column.id} style={{ verticalAlign: "middle" }}>
+      {column.id === "poster_path" ? image(data[column.id]) : data[column.id]}
+    </td>
+  ));
 
 const tableHeader = columns =>
   columns.map(column => <th key={column.id}>{column.header}</th>);
@@ -32,9 +45,6 @@ export class MarketTable extends Component {
     const { movies } = this.props;
     return (
       <React.Fragment>
-        <h3 style={{ textAlign: "center", marginBottom: "1rem" }}>
-          Top 100 Best Quoted Bids & Offers
-        </h3>
         <Table striped bordered hover>
           <thead>
             <tr>{tableHeader(columnsTops)}</tr>
@@ -59,7 +69,7 @@ export class MarketTable extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadMovies: (path, options) => dispatch(actions.getMovies(path, options)),
+    loadMovies: (path, options) => dispatch(actions.getMovies(path, options))
   };
 };
 

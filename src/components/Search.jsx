@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Form, InputGroup, Button } from "react-bootstrap";
+import { Form, InputGroup, FormControl } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Typeahead } from "react-bootstrap-typeahead";
+import { FaSearch } from "react-icons/fa";
 import * as actions from "../store/actions/index";
 
 export class SearchForm extends Component {
@@ -15,45 +15,46 @@ export class SearchForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
   }
 
-  handleChange(value) {
+  handleChange(event) {
     this.setState({
-      searchText: value.toUpperCase()
-    });
-  }
-
-  handleSelect(value) {
-    this.setState({
-      searchText: value.toString()
+      searchText: event.target.value.toUpperCase()
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { setStockSymbol, history } = this.props;
-    setStockSymbol(this.state.searchText);
-    history.push(`/stock/${this.state.searchText}`);
+    console.log(this.state.searchText);
+    // const { setStockSymbol, history } = this.props;
+    // setStockSymbol(this.state.searchText);
+    // history.push(`/stock/${this.state.searchText}`);
   }
 
   render() {
     return (
       <React.Fragment>
         <Form inline onSubmit={this.handleSubmit}>
-          <InputGroup>
-            <Typeahead
-              id="stocks"
-              labelKey="symbol"
-              onChange={this.handleSelect}
-              options={this.props.refSymbolTypeAhead}
-              placeholder="Enter Stock Symbol"
+          <InputGroup className="mb-3">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="search-icon">
+                <FaSearch />
+              </InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl
+              autoFocus
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="search-box"
+              type="text"
+              name="Search"
+              value={this.state.searchText}
+              onChange={this.handleChange}
+              style={{
+                border: "0",
+                boxShadow: "none"
+              }}
             />
-            <InputGroup.Append>
-              <Button variant="info" type="submit">
-                Get Info
-              </Button>
-            </InputGroup.Append>
           </InputGroup>
         </Form>
       </React.Fragment>
