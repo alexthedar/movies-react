@@ -14,6 +14,8 @@ export const PageNumbers = props => {
   } = props;
 
   const pageDisplay = `${activePage} of ${totalPages}`;
+
+  // disable if prev if on page 1 and next if on last page
   const prevDisable = activePage === 1;
   const nextDisable = activePage === totalPages;
   return (

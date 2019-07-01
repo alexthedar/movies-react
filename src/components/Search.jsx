@@ -23,9 +23,8 @@ export class SearchForm extends Component {
   }
 
   handleSubmit(event) {
-    const { search } = this.props;
     event.preventDefault();
-    console.log(this.state.queryString);
+    const { search } = this.props;
     search(this.state.queryString.toLowerCase());
   }
 

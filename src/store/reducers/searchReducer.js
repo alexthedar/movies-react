@@ -2,9 +2,9 @@ import * as constants from "../constants";
 import { updateObject } from "../../shared/updateObject";
 
 export const initialState = {
-  queryString: "raider",
-  activePage: 5,
-  totalPages: 20
+  queryString: "",
+  activePage: 1,
+  totalPages: 1
 };
 
 const setQueryString = (state, action) =>

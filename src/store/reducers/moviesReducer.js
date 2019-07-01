@@ -2,7 +2,7 @@ import * as constants from "../constants";
 import { updateObject } from "../../shared/updateObject";
 
 export const initialState = {
-  moviesList: []
+  moviesList: null
 };
 
 const setMovies = (state, action) =>

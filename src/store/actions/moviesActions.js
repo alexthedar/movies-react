@@ -34,10 +34,12 @@ export const getMovieSearch = ({ queryString }) => {
       .then(res => {
         dispatch(actions.setActivePage(res.data.page));
         dispatch(actions.setTotalPages(res.data.total_pages));
+        // make object of empty arrays = to total pages
         const moviesListObj = {};
         for (let i = 1; i <= res.data.total_pages; i++) {
           moviesListObj[i] = [];
         }
+        // set empty array of page # to results
         moviesListObj[res.data.page] = res.data.results;
         dispatch(setMoviesList(moviesListObj));
         return dispatch(actions.setLoading(false));

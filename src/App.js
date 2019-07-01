@@ -7,7 +7,7 @@ export const App = ({ moviesList }) => {
   return (
     <div>
       <Layout>
-        {moviesList.length !== 0 ? (
+        {moviesList ? (
           <MovieTable />
         ) : (
           <h3
@@ -18,9 +18,6 @@ export const App = ({ moviesList }) => {
           </h3>
         )}
       </Layout>
-      {/* <Layout>
-        <MovieTable />
-      </Layout> */}
     </div>
   );
 };
