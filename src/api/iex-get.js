@@ -1,11 +1,14 @@
-import axios from "axios";
+
 
 // https://api.themoviedb.org/3/trending/all/day?api_key=057dfa32a18eed0f2dc23dc2e80ed8a0
 
 const baseURL = "https://api.iextrading.com/1.0";
 // const baseURL = "https://api.themoviedb.org/3/search/movie?page=1&include_adult=false&language=en-US&api_key='057dfa32a18eed0f2dc23dc2e80ed8a0'";
-const movieDbBaseURL = "https://api.themoviedb.org/3";
-const apiKey = "057dfa32a18eed0f2dc23dc2e80ed8a0";
+// const movieDbBaseURL = "https://api.themoviedb.org/3";
+// const apiKey = "057dfa32a18eed0f2dc23dc2e80ed8a0";
+// const popularMoviesPath = "movie/popular"
+// const topRatedMoviesPath = "movie/top_rated"
+// const similarMoviesPath = (movie_id) => `movie/${movie_id}/similar`
 // const baseURL = `https://api.themoviedb.org/3/&api_key=${apiKey}`;
 //
 // query
@@ -25,28 +28,31 @@ const apiKey = "057dfa32a18eed0f2dc23dc2e80ed8a0";
 // reference
 //
 
-// export const refDataSymbols = () => {
-//   const url = `${baseURL}/ref-data/symbols`;
-//   return fetch(url)
-//   .then(res => Promise.resolve(res.json()))
-//     .catch(error => Promise.reject(error));
-// };
-export const get = () => {
-  return axios
-    .get(`${movieDbBaseURL}${}?api_key=${apiKey}`)
-    .then(function(response) {
-      // handle success
-      console.log("HERE", response);
-    })
-    .catch(function(error) {
-      // handle error
-      console.log(error);
-    })
-    .finally(function() {
-      // always executed
-      console.log("FINISHED");
-    });
+export const refDataSymbols = () => {
+  const url = `${baseURL}/ref-data/symbols`;
+  return fetch(url)
+  .then(res => Promise.resolve(res.json()))
+    .catch(error => Promise.reject(error));
 };
+
+// export const get = (path, query) => {
+// export const refDataSymbols = (path, query) => {
+//   const url = !query ? `${movieDbBaseURL}${path}?api_key=${apiKey}`: `${movieDbBaseURL}${path}?api_key=${apiKey}&query=${query}`
+//   return axios
+//     .get(url)
+//     .then(function(response) {
+//       // handle success
+//       console.log("HERE", response);
+//     })
+//     .catch(function(error) {
+//       // handle error
+//       console.log(error);
+//     })
+//     .finally(function() {
+//       // always executed
+//       console.log("FINISHED");
+//     });
+// };
 
 //
 // details

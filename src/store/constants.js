@@ -4,6 +4,15 @@
 
 export const SET_ERROR ='SET_ERROR';
 export const SET_LOADING ='SET_LOADING';
+
+//
+// movies
+//
+
+export const SET_MOVIES ='SET_MOVIES';
+export const GET_MOVIES ='GET_MOVIES';
+export const SET_MOVIES_FAILURE ='SET_MOVIES_FAILURE';
+
 //
 // market
 //

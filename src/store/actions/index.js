@@ -2,8 +2,13 @@ export {
   fetchMarketTop,
   setMarketTopData,
   getMarketTops,
-  setMarketTopDataFailure
-} from "./marketActions";
+  setMarketTopDataFailure,
+  
+  fetchMovies,
+  setMoviesData,
+  setMoviesFailure,
+  getMovies
+} from "./moviesActions";
 
 export {
   getSymbolQuotes,

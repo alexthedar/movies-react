@@ -4,13 +4,10 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 
 const columnsTops = [
-  { id: "symbol", header: "Symbol" },
-  { id: "askPrice", header: "Ask Price" },
-  { id: "askSize", header: "Ask Size" },
-  { id: "bidPrice", header: "Bid Price" },
-  { id: "bidSize", header: "Bid Size" },
-  { id: "lastSalePrice", header: "Last Sale Price" },
-  { id: "lastSaleSize", header: "Last Sale Size" }
+  { id: "poster_path", header: "Poster" },
+  { id: "original_title", header: "Title" },
+  { id: "release_date", header: "Release Date" },
+  { id: "overview", header: "Summary" },
 ];
 
 const tableRow = (columns, data) =>
@@ -21,8 +18,8 @@ const tableHeader = columns =>
 
 export class MarketTable extends Component {
   componentDidMount() {
-    const { loadTops } = this.props;
-    loadTops();
+    const { loadMovies } = this.props;
+    loadMovies("searchMovie", { query: "raider" });
   }
 
   handleClick(symbol) {
@@ -32,7 +29,7 @@ export class MarketTable extends Component {
   }
 
   render() {
-    const { marketTops } = this.props;
+    const { movies } = this.props;
     return (
       <React.Fragment>
         <h3 style={{ textAlign: "center", marginBottom: "1rem" }}>
@@ -44,7 +41,7 @@ export class MarketTable extends Component {
           </thead>
           <tbody>
             {// eslint-disable-next-line array-callback-return
-            marketTops.map((row, idx) => {
+            movies.map((row, idx) => {
               while (idx < 100) {
                 return (
                   <tr onClick={() => this.handleClick(row.symbol)} key={idx}>
@@ -62,14 +59,13 @@ export class MarketTable extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadTops: () => dispatch(actions.getMarketTops()),
-    setStockSymbol: symbol => dispatch(actions.setStockSymbol(symbol))
+    loadMovies: (path, options) => dispatch(actions.getMovies(path, options)),
   };
 };
 
 export function mapStateToProps(state) {
-  const { marketTops } = state.market;
-  return { marketTops };
+  const { movies } = state.movies;
+  return { movies };
 }
 
 export default connect(
