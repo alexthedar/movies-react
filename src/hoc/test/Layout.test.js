@@ -1,7 +1,6 @@
 import React from "react";
 import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
@@ -29,11 +28,9 @@ describe("Layout HOC Component", () => {
 
     wrapper = mount(
       <Provider store={store}>
-        <MemoryRouter initialEntries={["/"]}>
-          <Layout>
-            <TestComponent />
-          </Layout>
-        </MemoryRouter>
+        <Layout>
+          <TestComponent />
+        </Layout>
       </Provider>
     );
   });
