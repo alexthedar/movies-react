@@ -1,47 +1,18 @@
 //
 // app
 //
-
-export const SET_ERROR ='SET_ERROR';
-export const SET_LOADING ='SET_LOADING';
+export const SET_ERROR = "SET_ERROR";
+export const SET_LOADING = "SET_LOADING";
 
 //
 // movies
 //
-
-export const SET_MOVIES ='SET_MOVIES';
-export const GET_MOVIES ='GET_MOVIES';
-export const SET_MOVIES_FAILURE ='SET_MOVIES_FAILURE';
+export const SET_MOVIES_LIST = "SET_MOVIES_LIST";
+export const GET_MOVIES_LIST = "GET_MOVIES_LIST";
 
 //
-// market
+// search
 //
-
-export const SET_MARKET_TOP ='SET_MARKET_TOP';
-export const GET_MARKET_TOP ='GET_MARKET_TOP';
-export const SET_MARKET_TOP_FAILURE ='SET_MARKET_TOP_FAILURE';
-
-//
-// detail
-//
-
-export const GET_SYMBOL_QUOTES ='GET_SYMBOL_QUOTES';
-export const SET_SYMBOL_QUOTES ='SET_SYMBOL_QUOTES';
-export const GET_SYMBOL_LOGO ='GET_SYMBOL_LOGO';
-export const SET_SYMBOL_LOGO ='SET_SYMBOL_LOGO';
-export const GET_SYMBOL_NEWS ='GET_SYMBOL_NEWS';
-export const SET_SYMBOL_NEWS ='SET_SYMBOL_NEWS';
-export const GET_SYMBOL_COMPANY_INFO ='GET_SYMBOL_COMPANY_INFO';
-export const SET_SYMBOL_COMPANY_INFO ='SET_SYMBOL_COMPANY_INFO';
-export const GET_SYMBOL_PRICE ='GET_SYMBOL_PRICE';
-export const SET_SYMBOL_PRICE ='SET_SYMBOL_PRICE';
-export const GET_STOCK_SYMBOL ='GET_STOCK_SYMBOL';
-export const SET_STOCK_SYMBOL ='SET_STOCK_SYMBOL';
-export const SET_STOCK_SYMBOL_FAILURE ='SET_STOCK_SYMBOL_FAILURE';
-
-//
-// REF
-//
-export const GET_REF_SYMBOLS ='GET_REF_SYMBOLS';
-export const SET_REF_SYMBOLS ='SET_REF_SYMBOLS';
-export const SET_REF_SYMBOLS_FAILURE ='SET_REF_SYMBOLS_FAILURE';
+export const SET_QUERY_STRING = "SET_QUERY_STRING";
+export const SET_ACTIVE_PAGE = "SET_ACTIVE_PAGE";
+export const SET_TOTAL_PAGES = "SET_TOTAL_PAGES";

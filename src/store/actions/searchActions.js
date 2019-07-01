@@ -1,36 +1,32 @@
 import * as constants from "../constants";
-import * as actions from "./index";
-import * as iexGet from "../../api/iex-get";
+import * as actions from "../actions/index";
 
-const extractNameAndSymbols = iexRefData => {
-  return iexRefData.map(({ symbol }) => symbol);
-};
-
-export const fetchRefSymbols = () => {
+export const setQueryString = queryString => {
   return {
-    type: constants.GET_REF_SYMBOLS
+    type: constants.SET_QUERY_STRING,
+    queryString
   };
 };
 
-export const setRefSymbols = refSymbols => {
+export const setActivePage = activePage => {
   return {
-    type: constants.SET_REF_SYMBOLS,
-    refSymbols
+    type: constants.SET_ACTIVE_PAGE,
+    activePage
   };
 };
 
-export const setRefSymbolsFailure = error => {
+export const setTotalPages = totalPages => {
+  return {
+    type: constants.SET_TOTAL_PAGES,
+    totalPages
+  };
+};
+
+export const searchMovies = queryString => {
   return dispatch => {
-    return dispatch(actions.setError(error.message));
+    dispatch(setQueryString(queryString));
+    return dispatch(actions.getMovies({ queryString }));
   };
 };
 
-export const getRefSymbols = () => {
-  return dispatch =>
-    Promise.resolve(iexGet.refDataSymbols())
-      .then(res => {
-        dispatch(fetchRefSymbols());
-        return dispatch(setRefSymbols(extractNameAndSymbols(res)));
-      })
-      .catch(error => dispatch(setRefSymbolsFailure(error)));
-};
+export const goToPage = pageNumber => {};

@@ -1,6 +1,6 @@
-import * as constants from "../constants";
-import * as actions from "./index";
-import * as iexGet from "../../api/iex-get";
+import * as constants from "../store/constants";
+import * as actions from "../store/actions/index";
+import * as iexGet from "./iex-get";
 
 export const fetchSymbolQuotes = () => {
   return {

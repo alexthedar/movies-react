@@ -1,6 +1,6 @@
 import { expect } from "chai";
-import stockDetailReducer, { initialState } from "../stockDetailReducer";
-import * as actions from "../../actions/index";
+import stockDetailReducer, { initialState } from "./stockDetailReducer";
+import * as actions from "../store/actions/index";
 
 describe("search reducer", () => {
   let action;
@@ -57,4 +57,3 @@ describe("search reducer", () => {
     expect(actualResult).to.deep.equal(expectedResult);
   });
 });
-

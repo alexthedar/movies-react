@@ -3,9 +3,7 @@ import { updateObject } from "../../shared/updateObject";
 
 export const initialState = {
   error: "",
-  isFetching: false,
-  activePage: 1,
-  totalPages: 5
+  isFetching: false
 };
 
 const setError = (state, action) =>

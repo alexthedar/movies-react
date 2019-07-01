@@ -3,7 +3,7 @@ import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { NewsItem, NewsList, mapStateToProps } from "../companyNews";
 import { Card } from "react-bootstrap";
-import fakeData from "../../store/__mocks__/fakeStore";
+import fakeData from "../store/__mocks__/fakeStore";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -39,9 +39,9 @@ describe("NewsList Component", () => {
   it("has h4 components when no news present", () => {
     const newsItem = wrapper.find(NewsItem).at(0);
     expect(newsItem.find(Card)).toHaveLength(1);
-    expect(newsItem.find('CardHeader')).toHaveLength(1);
-    expect(newsItem.find('CardBody')).toHaveLength(1);
-    expect(newsItem.find('CardFooter')).toHaveLength(1);
+    expect(newsItem.find("CardHeader")).toHaveLength(1);
+    expect(newsItem.find("CardBody")).toHaveLength(1);
+    expect(newsItem.find("CardFooter")).toHaveLength(1);
   });
 
   it("should have a mapStateToProps function", () => {

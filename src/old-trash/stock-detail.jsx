@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
-import CompanyInfo from "../components/companyInfo";
-import CompanyNews from "../components/companyNews";
+import CompanyInfo from "./companyInfo";
+import CompanyNews from "./companyNews";
 
 export class StockDetail extends Component {
   componentDidMount() {

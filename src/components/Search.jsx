@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, InputGroup, FormControl } from "react-bootstrap";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import * as actions from "../store/actions/index";
 
@@ -10,7 +9,7 @@ export class SearchForm extends Component {
     super(props);
 
     this.state = {
-      searchText: ""
+      queryString: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,16 +18,15 @@ export class SearchForm extends Component {
 
   handleChange(event) {
     this.setState({
-      searchText: event.target.value.toUpperCase()
+      queryString: event.target.value
     });
   }
 
   handleSubmit(event) {
+    const { search } = this.props;
     event.preventDefault();
-    console.log(this.state.searchText);
-    // const { setStockSymbol, history } = this.props;
-    // setStockSymbol(this.state.searchText);
-    // history.push(`/stock/${this.state.searchText}`);
+    console.log(this.state.queryString);
+    search(this.state.queryString.toLowerCase());
   }
 
   render() {
@@ -48,7 +46,7 @@ export class SearchForm extends Component {
               aria-describedby="search-box"
               type="text"
               name="Search"
-              value={this.state.searchText}
+              value={this.state.queryString}
               onChange={this.handleChange}
               style={{
                 border: "0",
@@ -64,16 +62,16 @@ export class SearchForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setStockSymbol: symbol => dispatch(actions.setStockSymbol(symbol))
+    search: queryString => dispatch(actions.searchMovies(queryString))
   };
 };
 
 export function mapStateToProps(state) {
-  const { refSymbolTypeAhead } = state.search;
-  return { refSymbolTypeAhead };
+  const { queryString } = state.search;
+  return { queryString };
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(SearchForm));
+)(SearchForm);

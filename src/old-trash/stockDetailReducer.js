@@ -1,12 +1,12 @@
-import * as constants from "../constants";
-import { updateObject } from "../../shared/updateObject";
+import * as constants from "../store/constants";
+import { updateObject } from "../shared/updateObject";
 
 export const initialState = {
   quotes: [],
   logo: null,
   news: [],
   companyInfo: [],
-  stockSymbol: '',
+  stockSymbol: ""
 };
 
 const setSymbolQuotes = (state, action) =>

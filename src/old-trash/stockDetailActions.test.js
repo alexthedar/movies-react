@@ -2,9 +2,9 @@ import { expect } from "chai";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as iexGet from "../../../api/iex-get";
-import * as movieDb from "../../../api/moviedb";
-import * as constants from "../../constants";
-import * as actions from "../index";
+import * as movieDb from "../api/moviedb";
+import * as constants from "../store/constants";
+import * as actions from "../store/actions/index";
 
 const mockStore = configureStore([thunk]);
 const store = mockStore({

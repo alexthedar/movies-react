@@ -2,21 +2,15 @@ import * as constants from "../constants";
 import { updateObject } from "../../shared/updateObject";
 
 export const initialState = {
-  marketTops: [],
-  movies: []
+  moviesList: []
 };
 
-const setMarketTops = (state, action) =>
-  updateObject(state, { marketTops: action.marketTops });
-  
 const setMovies = (state, action) =>
-  updateObject(state, { movies: action.movies });
+  updateObject(state, { moviesList: action.movies });
 
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
-    case constants.SET_MARKET_TOP:
-      return setMarketTops(state, action);
-    case constants.SET_MOVIES:
+    case constants.SET_MOVIES_LIST:
       return setMovies(state, action);
     default:
       return state;
