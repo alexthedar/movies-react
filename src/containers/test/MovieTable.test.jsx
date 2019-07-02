@@ -1,5 +1,4 @@
 import React from "react";
-import { expect } from "chai";
 import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import fakeProps from "../../store/__mocks__/fakeStore";
@@ -24,18 +23,18 @@ describe("MarketTable Component", () => {
   });
 
   it("renders without crashing", () => {
-    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.exists()).toEqual(true);
   });
 
   it("dispatches loadTops on mount", () => {
-    expect(props.loadTops.mock.calls.length).to.equal(1);
+    expect(props.loadTops.mock.calls.length).toEqual(1);
   });
 
   it("dispatches setStockSymbol if item clicked", () => {
     const tableBodyRow = wrapper.find("tbody").childAt(0);
     tableBodyRow.simulate("click");
-    expect(props.setStockSymbol.mock.calls.length).to.equal(1);
-    expect(props.history.push.mock.calls.length).to.equal(1);
+    expect(props.setStockSymbol.mock.calls.length).toEqual(1);
+    expect(props.history.push.mock.calls.length).toEqual(1);
   });
 
   it("has h3, thead, tbody, tr, th and td html tags", () => {
@@ -57,6 +56,6 @@ describe("MarketTable Component", () => {
       marketTops: ["test"]
     };
 
-    expect(actualResult).to.deep.equal(expectedResult);
+    expect(actualResult).toEqual(expectedResult);
   });
 });

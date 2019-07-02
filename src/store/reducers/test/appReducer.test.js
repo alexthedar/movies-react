@@ -1,4 +1,3 @@
-import { expect } from "chai";
 import appReducer, { initialState } from "../appReducer";
 import * as actions from "../../actions/index";
 
@@ -8,7 +7,7 @@ describe("search reducer", () => {
   let expectedResult;
 
   it("should return the initial state", () => {
-    expect(appReducer(undefined, {})).to.deep.equal({
+    expect(appReducer(undefined, {})).toEqual({
       error: "",
       isFetching: false
     });
@@ -21,7 +20,7 @@ describe("search reducer", () => {
       ...initialState,
       error: "error"
     };
-    expect(actualResult).to.deep.equal(expectedResult);
+    expect(actualResult).toEqual(expectedResult);
   });
 
   it("should react to SET_LOADING action", () => {
@@ -31,6 +30,6 @@ describe("search reducer", () => {
       ...initialState,
       isFetching: true
     };
-    expect(actualResult).to.deep.equal(expectedResult);
+    expect(actualResult).toEqual(expectedResult);
   });
 });

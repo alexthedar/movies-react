@@ -10,7 +10,7 @@ const pageFlag = "&page=";
 const queryFlag = "&query=";
 const searchPath = "/search/movie";
 
-const searchURL = ({ queryString, activePage = 1 }) =>
+export const searchURL = ({ queryString, activePage = 1 }) =>
   `${baseURL}${searchPath}${key}${languageFlag}${queryFlag}${queryString}${pageFlag}${activePage}${adultFlag}`;
 
 export const fetchMovies = () => {
@@ -32,7 +32,6 @@ export const getMovieSearch = ({ queryString }) => {
     return axios
       .get(searchURL({ queryString }))
       .then(res => {
-        console.log("TCL: getMovieSearch -> res", res);
         dispatch(actions.setActivePage(res.data.page));
         dispatch(actions.setTotalPages(res.data.total_pages));
         // make object of empty arrays = to total pages

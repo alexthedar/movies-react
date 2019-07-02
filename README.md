@@ -4,7 +4,7 @@
 git clone https://github.com/alexthedar/movie-react.git
 cd movie-react
 npm install
-npm start 
+npm start
 ```
 
 ## Unit Test
@@ -12,15 +12,17 @@ npm start
 ```
 npm test
 ```
-to include a coverage report use the following command (include the extra -- between test and --coverage): 
+
+to include a coverage report use the following command (include the extra -- between test and --coverage):
+
 ```
-npm test -- --coverage
+npm run test:coverage
 ```
 
 ## e2e Test
 
 ```
-npm test:e2e
+npm run test:e2e
 ```
 
 ### Acceptance Criteria
@@ -32,17 +34,17 @@ npm test:e2e
 5. Return a link to a repo of code
 6. BONUS POINTS - Make the UI more attractive
 
-
 ---
 
 ### Stocks-react
-This project uses parts recycled from my [stocks-react](https://github.com/alexthedar/stocks-react) repo.  Stocks-react uses the iex api to GET and display top 100 stocks on the iex market.  It also allows the user to search for stocks using stock symbols.
 
+This project uses parts recycled from my [stocks-react](https://github.com/alexthedar/stocks-react) repo. Stocks-react uses the iex api to GET and display top 100 stocks on the iex market. It also allows the user to search for stocks using stock symbols.
 
 ---
 
 ### Create-react-app
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  This project only uses the start and test react-scripts that come included with create-react-app however CRA includes build and eject as well.  I have included the 'create-react-app' below for reference.
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). This project only uses the start and test react-scripts that come included with create-react-app however CRA includes build and eject as well. I have included the 'create-react-app' below for reference.
 
 ### Available create-react-app Scripts
 

@@ -1,5 +1,4 @@
-import { expect } from "chai";
-import marketReducer, { initialState } from "../marketReducer";
+import moviesReducer, { initialState } from "../moviesReducer";
 import * as actions from "../../actions/index";
 
 describe("search reducer", () => {
@@ -8,18 +7,18 @@ describe("search reducer", () => {
   let expectedResult;
 
   it("should return the initial state", () => {
-    expect(marketReducer(undefined, {})).to.deep.equal({
-      marketTops: []
+    expect(moviesReducer(undefined, {})).toEqual({
+      moviesList: null
     });
   });
 
-  it("should react to SET_MARKET_TOP action", () => {
-    action = actions.setMarketTopData(["test"]);
-    actualResult = marketReducer(initialState, action);
+  it("should react to SET_MOVIES_LIST action", () => {
+    action = actions.setMoviesList(["test"]);
+    actualResult = moviesReducer(initialState, action);
     expectedResult = {
       ...initialState,
-      marketTops: ["test"]
+      moviesList: ["test"]
     };
-    expect(actualResult).to.deep.equal(expectedResult);
+    expect(actualResult).toEqual(expectedResult);
   });
 });

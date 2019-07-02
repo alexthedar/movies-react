@@ -1,20 +1,17 @@
-import { expect } from "chai";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import * as iexGet from "../../../api/iex-get";
 import * as constants from "../../constants";
 import * as actions from "../index";
 
 const mockStore = configureStore([thunk]);
 const store = mockStore({
-  market: {
-    marketTops: []
+  movies: {
+    moviesList: null
   }
 });
 const error = { message: "error" };
-jest.mock("../../../api/iex-get");
 
-describe("marketActions creators", () => {
+describe("moviesActions creators", () => {
   let expectedResult;
   let actualResult;
 
@@ -22,59 +19,84 @@ describe("marketActions creators", () => {
     store.clearActions();
   });
 
-  describe("fetchMarketTop action creator", () => {
-    it("should create an action to fetch Market Top data", () => {
-      actualResult = actions.fetchMarketTop();
+  describe("searchURL action creator", () => {
+    it("should create a search URL", () => {
+      actualResult = actions.searchURL({ queryString: "test", activePage: 99 });
+      expectedResult =
+        "https://api.themoviedb.org/3/search/movie?api_key=057dfa32a18eed0f2dc23dc2e80ed8a0&language=en-US&query=test&page=99&include_adult=false";
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
+
+  describe("fetchMovies action creator", () => {
+    it("should create an action to signal fetch movies", () => {
+      actualResult = actions.fetchMovies();
       expectedResult = {
-        type: constants.GET_MARKET_TOP
+        type: constants.GET_MOVIES_LIST
       };
-      expect(actualResult).to.deep.equal(expectedResult);
+      expect(actualResult).toEqual(expectedResult);
     });
   });
 
-  describe("setMarketTopData action creator", () => {
-    it("should create an action to set Market top data", () => {
-      const marketTops = ["test"];
-      actualResult = actions.setMarketTopData(marketTops);
+  describe("setMoviesList action creator", () => {
+    it("should create an action to set movies list", () => {
+      const movies = ["test"];
+      actualResult = actions.setMoviesList(movies);
       expectedResult = {
-        type: constants.SET_MARKET_TOP,
-        marketTops
+        type: constants.SET_MOVIES_LIST,
+        movies
       };
-      expect(actualResult).to.deep.equal(expectedResult);
+      expect(actualResult).toEqual(expectedResult);
     });
   });
 
-  describe("setMarketTopDataFailure action creator", () => {
-    it("should create an action to set Market top error", () => {
-      store.dispatch(actions.setRefSymbolsFailure(error));
-      actualResult = store.getActions();
-      expectedResult = [actions.setError(error.message)];
-      expect(actualResult).to.deep.equal(expectedResult);
-    });
-  });
+  // describe("getMovieSearch action creator", () => {
+  //   it("should set the market tops data in state", () => {
+  //     iexGet.topsData.mockResolvedValue(["data"]);
 
-  describe("getMarketTops action creator", () => {
-    it("should set the market tops data in state", () => {
-      iexGet.topsData.mockResolvedValue(["data"]);
+  //     return store.dispatch(actions.getMarketTops()).then(() => {
+  //       actualResult = store.getActions();
+  //       expectedResult = [
+  //         actions.fetchMarketTop(),
+  //         actions.setMarketTopData(["data"])
+  //       ];
+  //       return expect(actualResult).toEqual(expectedResult);
+  //     });
+  //   });
 
-      return store.dispatch(actions.getMarketTops()).then(() => {
-        actualResult = store.getActions();
-        expectedResult = [
-          actions.fetchMarketTop(),
-          actions.setMarketTopData(["data"])
-        ];
-        return expect(actualResult).to.deep.equal(expectedResult);
-      });
-    });
+  //   it("should trigger failure actions creator if rejected", () => {
+  //     iexGet.topsData.mockRejectedValue(error);
 
-    it("should trigger failure actions creator if rejected", () => {
-      iexGet.topsData.mockRejectedValue(error);
+  //     return store.dispatch(actions.getMarketTops()).then(() => {
+  //       actualResult = store.getActions();
+  //       expectedResult = [actions.setError(error.message)];
+  //       return expect(actualResult).toEqual(expectedResult);
+  //     });
+  //   });
+  // });
 
-      return store.dispatch(actions.getMarketTops()).then(() => {
-        actualResult = store.getActions();
-        expectedResult = [actions.setError(error.message)];
-        return expect(actualResult).to.deep.equal(expectedResult);
-      });
-    });
-  });
+  // describe("getNewPageMovieSearch action creator", () => {
+  //   it("should set the market tops data in state", () => {
+  //     iexGet.topsData.mockResolvedValue(["data"]);
+
+  //     return store.dispatch(actions.getMarketTops()).then(() => {
+  //       actualResult = store.getActions();
+  //       expectedResult = [
+  //         actions.fetchMarketTop(),
+  //         actions.setMarketTopData(["data"])
+  //       ];
+  //       return expect(actualResult).toEqual(expectedResult);
+  //     });
+  //   });
+
+  //   it("should trigger failure actions creator if rejected", () => {
+  //     iexGet.topsData.mockRejectedValue(error);
+
+  //     return store.dispatch(actions.getMarketTops()).then(() => {
+  //       actualResult = store.getActions();
+  //       expectedResult = [actions.setError(error.message)];
+  //       return expect(actualResult).toEqual(expectedResult);
+  //     });
+  //   });
+  // });
 });

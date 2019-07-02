@@ -1,7 +1,5 @@
-import { expect } from "chai";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import * as iexGet from "../../../api/iex-get";
 import * as constants from "../../constants";
 import * as actions from "../index";
 
@@ -12,7 +10,6 @@ const store = mockStore({
   }
 });
 const error = { message: "error" };
-jest.mock("../../../api/iex-get");
 
 describe("marketActions creators", () => {
   let expectedResult;
@@ -28,7 +25,7 @@ describe("marketActions creators", () => {
       expectedResult = {
         type: constants.GET_REF_SYMBOLS
       };
-      expect(actualResult).to.deep.equal(expectedResult);
+      expect(actualResult).toEqual(expectedResult);
     });
   });
 
@@ -40,7 +37,7 @@ describe("marketActions creators", () => {
         type: constants.SET_REF_SYMBOLS,
         refSymbols
       };
-      expect(actualResult).to.deep.equal(expectedResult);
+      expect(actualResult).toEqual(expectedResult);
     });
   });
 
@@ -50,7 +47,7 @@ describe("marketActions creators", () => {
       store.dispatch(actions.setRefSymbolsFailure(error));
       actualResult = store.getActions();
       expectedResult = [actions.setError(error.message)];
-      expect(actualResult).to.deep.equal(expectedResult);
+      expect(actualResult).toEqual(expectedResult);
     });
   });
 
@@ -64,7 +61,7 @@ describe("marketActions creators", () => {
           actions.fetchRefSymbols(),
           actions.setRefSymbols(["A"])
         ];
-        return expect(actualResult).to.deep.equal(expectedResult);
+        return expect(actualResult).toEqual(expectedResult);
       });
     });
 
@@ -74,7 +71,7 @@ describe("marketActions creators", () => {
       return store.dispatch(actions.getRefSymbols()).then(() => {
         actualResult = store.getActions();
         expectedResult = [actions.setError(error.message)];
-        return expect(actualResult).to.deep.equal(expectedResult);
+        return expect(actualResult).toEqual(expectedResult);
       });
     });
   });

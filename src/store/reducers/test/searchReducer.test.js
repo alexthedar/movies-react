@@ -1,4 +1,3 @@
-import { expect } from "chai";
 import searchReducer, { initialState } from "../searchReducer";
 import * as actions from "../../actions/index";
 
@@ -8,18 +7,40 @@ describe("search reducer", () => {
   let expectedResult;
 
   it("should return the initial state", () => {
-    expect(searchReducer(undefined, {})).to.deep.equal({
-      refSymbolTypeAhead: []
+    expect(searchReducer(undefined, {})).toEqual({
+      queryString: "",
+      activePage: 1,
+      totalPages: 1
     });
   });
 
-  it("should react to SET_REF_SYMBOLS", () => {
-    action = actions.setRefSymbols(["test"]);
+  it("should react to SET_QUERY_STRING", () => {
+    action = actions.setQueryString("test");
     actualResult = searchReducer(initialState, action);
     expectedResult = {
       ...initialState,
-      refSymbolTypeAhead: ["test"]
+      queryString: "test"
     };
-    expect(actualResult).to.deep.equal(expectedResult);
+    expect(actualResult).toEqual(expectedResult);
+  });
+
+  it("should react to SET_ACTIVE_PAGE", () => {
+    action = actions.setActivePage(99);
+    actualResult = searchReducer(initialState, action);
+    expectedResult = {
+      ...initialState,
+      activePage: 99
+    };
+    expect(actualResult).toEqual(expectedResult);
+  });
+
+  it("should react to SET_TOTAL_PAGES", () => {
+    action = actions.setTotalPages(11);
+    actualResult = searchReducer(initialState, action);
+    expectedResult = {
+      ...initialState,
+      totalPages: 11
+    };
+    expect(actualResult).toEqual(expectedResult);
   });
 });

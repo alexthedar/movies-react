@@ -1,4 +1,3 @@
-import { expect } from "chai";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as constants from "../../constants";
@@ -7,7 +6,7 @@ import * as actions from "../index";
 const mockStore = configureStore([thunk]);
 const store = mockStore({
   app: {
-    error: '',
+    error: "",
     isFetching: false
   }
 });
@@ -22,13 +21,13 @@ describe("AppActions creators", () => {
 
   describe("setError action creator", () => {
     it("should create an action to set error data", () => {
-      const error = 'error';
+      const error = "error";
       actualResult = actions.setError(error);
       expectedResult = {
         type: constants.SET_ERROR,
         error
       };
-      expect(actualResult).to.deep.equal(expectedResult);
+      expect(actualResult).toEqual(expectedResult);
     });
   });
 
@@ -40,7 +39,7 @@ describe("AppActions creators", () => {
         type: constants.SET_LOADING,
         isFetching
       };
-      expect(actualResult).to.deep.equal(expectedResult);
+      expect(actualResult).toEqual(expectedResult);
     });
   });
 });

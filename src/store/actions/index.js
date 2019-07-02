@@ -2,7 +2,8 @@ export {
   fetchMovies,
   setMoviesList,
   getNewPageMovieSearch,
-  getMovieSearch
+  getMovieSearch,
+  searchURL
 } from "./moviesActions";
 
 export {
