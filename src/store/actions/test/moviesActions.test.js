@@ -3,6 +3,15 @@ import thunk from "redux-thunk";
 import * as constants from "../../constants";
 import * as actions from "../index";
 import Axios from "axios";
+import {
+  baseURL,
+  key,
+  languageFlag,
+  adultFlag,
+  pageFlag,
+  queryFlag,
+  searchPath
+} from "../moviesActions";
 
 const mockStore = configureStore([thunk]);
 const store = mockStore({
@@ -23,8 +32,7 @@ describe("moviesActions creators", () => {
   describe("searchURL action creator", () => {
     it("should create a search URL", () => {
       actualResult = actions.searchURL({ queryString: "test", activePage: 99 });
-      expectedResult =
-        "https://api.themoviedb.org/3/search/movie?api_key=057dfa32a18eed0f2dc23dc2e80ed8a0&language=en-US&query=test&page=99&include_adult=false";
+      expectedResult = `${baseURL}${searchPath}${key}${languageFlag}${queryFlag}test${pageFlag}99${adultFlag}`;
       expect(actualResult).toEqual(expectedResult);
     });
   });

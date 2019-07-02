@@ -39,29 +39,47 @@ const tableRow = data =>
 const tableHeader = () =>
   columnsTops.map(column => <th key={column.id}>{column.header}</th>);
 
-export const MovieTable = ({ moviesList, totalPages, activePage }) => {
-  return (
-    <React.Fragment>
-      {totalPages > 1 && <PageNumbers />}
-      <Table bordered hover responsive="lg">
-        <thead>
-          <tr>{tableHeader()}</tr>
-        </thead>
-        <tbody>
-          {moviesList[activePage].map(row => (
-            <tr key={row.id}>{tableRow(row)}</tr>
-          ))}
-        </tbody>
-      </Table>
-      {totalPages > 1 && <PageNumbers />}
-    </React.Fragment>
-  );
+export const MovieTable = ({
+  moviesList,
+  totalPages,
+  activePage,
+  queryString
+}) => {
+  if (moviesList[activePage].length !== 0) {
+    return (
+      <React.Fragment>
+        {totalPages > 1 && <PageNumbers />}
+        <Table bordered hover responsive="lg">
+          <thead>
+            <tr>{tableHeader()}</tr>
+          </thead>
+          <tbody>
+            {moviesList[activePage].map(row => (
+              <tr key={row.id} className="movie-entry">
+                {tableRow(row)}
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        {totalPages > 1 && <PageNumbers />}
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <h3
+        style={{ paddingTop: "5rem" }}
+        className="d-flex justify-content-center align-items-center"
+      >
+        Nothing found for query '{queryString}' .
+      </h3>
+    );
+  }
 };
 
 export function mapStateToProps(state) {
   const { moviesList } = state.movies;
-  const { totalPages, activePage } = state.search;
-  return { moviesList, totalPages, activePage };
+  const { totalPages, activePage, queryString } = state.search;
+  return { moviesList, totalPages, activePage, queryString };
 }
 
 export default connect(

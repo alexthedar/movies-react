@@ -4,25 +4,21 @@
 git clone https://github.com/alexthedar/movie-react.git
 cd movie-react
 npm install
-npm start
+npm run start
 ```
 
-## Unit Test
+## Test
 
-```
-npm test
-```
-
-to include a coverage report use the following command (include the extra -- between test and --coverage):
+To run testing once with a coverage report use the following command:
 
 ```
 npm run test:coverage
 ```
 
-## Cypress Test
+To run test with --watch command use the following command.
 
 ```
-npm run test:cypress
+npm run test
 ```
 
 ### Acceptance Criteria
@@ -33,6 +29,13 @@ npm run test:cypress
 4. Create production quality code
 5. Return a link to a repo of code
 6. BONUS POINTS - Make the UI more attractive
+
+### Notes
+
+- .env.development.local has been retained to hold key only for evaluation purposes else it would be added .gitignore
+- UI testing through puppeteer or cypress has not been implemented because not in scope plus app is small enough that all aspects can be manually tested
+- unit tests are in the test folders next to each component / file that is being tested.
+- responsive table has been implemented based on specifications of design document but would not recommend because of layout problems on smaller devices.
 
 ---
 

@@ -2,13 +2,13 @@ import axios from "axios";
 import * as constants from "../constants";
 import * as actions from "./index";
 
-const baseURL = "https://api.themoviedb.org/3";
-const key = "?api_key=057dfa32a18eed0f2dc23dc2e80ed8a0";
-const languageFlag = "&language=en-US";
-const adultFlag = "&include_adult=false";
-const pageFlag = "&page=";
-const queryFlag = "&query=";
-const searchPath = "/search/movie";
+export const baseURL = "https://api.themoviedb.org/3";
+export const key = `?api_key=${process.env.REACT_APP_API_KEY}`;
+export const languageFlag = "&language=en-US";
+export const adultFlag = "&include_adult=false";
+export const pageFlag = "&page=";
+export const queryFlag = "&query=";
+export const searchPath = "/search/movie";
 
 export const searchURL = ({ queryString, activePage = 1 }) =>
   `${baseURL}${searchPath}${key}${languageFlag}${queryFlag}${queryString}${pageFlag}${activePage}${adultFlag}`;

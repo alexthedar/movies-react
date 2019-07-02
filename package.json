@@ -71,8 +71,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "test:coverage": "node scripts/test.js --coverage --watchAll=false",
-    "test:cypress": "cypress open"
+    "test:coverage": "node scripts/test.js --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -90,12 +89,12 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^3.3.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint-plugin-prettier": "^3.1.0",
     "jest-enzyme": "^7.0.2",
     "prettier": "^1.18.2",
+    "puppeteer": "^1.18.1",
     "react-test-renderer": "^16.8.6",
     "redux-mock-store": "^1.5.3"
   },
