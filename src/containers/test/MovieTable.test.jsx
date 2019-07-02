@@ -3,6 +3,8 @@ import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import fakeStore from "../../store/__mocks__/fakeStore";
 import { MovieTable, mapStateToProps } from "../MovieTable";
+import { Table, Image } from "react-bootstrap";
+import PageNumbers from "../../components/PageNumbers";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -19,29 +21,37 @@ describe("MovieTable Component", () => {
   });
 
   it("renders without crashing", () => {
-    console.log(wrapper.debug());
     expect(wrapper.exists()).toEqual(true);
   });
 
-  // it("dispatches loadTops on mount", () => {
-  //   expect(props.loadTops.mock.calls.length).toEqual(1);
-  // });
+  it("has thead, tbody", () => {
+    expect(wrapper.find("thead")).toHaveLength(1);
+    expect(wrapper.find("tbody")).toHaveLength(1);
+  });
 
-  // it("dispatches setStockSymbol if item clicked", () => {
-  //   const tableBodyRow = wrapper.find("tbody").childAt(0);
-  //   tableBodyRow.simulate("click");
-  //   expect(props.setStockSymbol.mock.calls.length).toEqual(1);
-  //   expect(props.history.push.mock.calls.length).toEqual(1);
-  // });
+  it("has 4 columns", () => {
+    expect(wrapper.find("th")).toHaveLength(4);
+  });
 
-  // it("has h3, thead, tbody, tr, th and td html tags", () => {
-  //   expect(wrapper.find("h3")).to.have.length(1);
-  //   expect(wrapper.find("thead")).to.have.length(1);
-  //   expect(wrapper.find("tbody")).to.have.length(1);
-  //   expect(wrapper.find("tr")).to.have.length(3);
-  //   expect(wrapper.find("th")).to.have.length(7);
-  //   expect(wrapper.find("td")).to.have.length(14);
-  // });
+  it("has rows for each entry + head", () => {
+    expect(wrapper.find("tr")).toHaveLength(3);
+  });
+
+  it("has cells for each column/entry", () => {
+    expect(wrapper.find("td")).toHaveLength(8);
+  });
+
+  it("has 2 PageNumber component", () => {
+    expect(wrapper.find(PageNumbers)).toHaveLength(2);
+  });
+
+  it("has a Table component", () => {
+    expect(wrapper.find(Table)).toHaveLength(1);
+  });
+
+  it("has poster images for each entry", () => {
+    expect(wrapper.find(Image)).toHaveLength(2);
+  });
 
   it("should have a mapStateToProps function", () => {
     const state = {
