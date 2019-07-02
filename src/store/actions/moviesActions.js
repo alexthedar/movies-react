@@ -60,6 +60,6 @@ export const getNewPageMovieSearch = ({ queryString, newPage }) => {
         dispatch(setMoviesList(moviesList));
         return dispatch(actions.setLoading(false));
       })
-      .catch(error => dispatch(actions.setError(error.message)));
+      .catch(error => dispatch(actions.setError(error)));
   };
 };

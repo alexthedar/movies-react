@@ -2,6 +2,7 @@ import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as constants from "../../constants";
 import * as actions from "../index";
+import Axios from "axios";
 
 const mockStore = configureStore([thunk]);
 const store = mockStore({
@@ -50,53 +51,81 @@ describe("moviesActions creators", () => {
     });
   });
 
-  // describe("getMovieSearch action creator", () => {
-  //   it("should set the market tops data in state", () => {
-  //     iexGet.topsData.mockResolvedValue(["data"]);
+  describe("getMovieSearch action creator", () => {
+    it("should trigger a call to api and dispatch actions to set store with retrieved data", () => {
+      Axios.get.mockResolvedValue({
+        data: { page: 1, total_pages: 2, results: [{ title: "test" }] }
+      });
 
-  //     return store.dispatch(actions.getMarketTops()).then(() => {
-  //       actualResult = store.getActions();
-  //       expectedResult = [
-  //         actions.fetchMarketTop(),
-  //         actions.setMarketTopData(["data"])
-  //       ];
-  //       return expect(actualResult).toEqual(expectedResult);
-  //     });
-  //   });
+      return store
+        .dispatch(actions.getMovieSearch({ queryString: "test" }))
+        .then(() => {
+          actualResult = store.getActions();
+          expectedResult = [
+            actions.fetchMovies(),
+            actions.setActivePage(1),
+            actions.setTotalPages(2),
+            actions.setMoviesList({ 1: [{ title: "test" }], 2: [] }),
+            actions.setLoading(false)
+          ];
+          return expect(actualResult).toEqual(expectedResult);
+        });
+    });
 
-  //   it("should trigger failure actions creator if rejected", () => {
-  //     iexGet.topsData.mockRejectedValue(error);
+    it("should trigger failure actions creator if rejected", () => {
+      Axios.get.mockRejectedValue(error);
 
-  //     return store.dispatch(actions.getMarketTops()).then(() => {
-  //       actualResult = store.getActions();
-  //       expectedResult = [actions.setError(error.message)];
-  //       return expect(actualResult).toEqual(expectedResult);
-  //     });
-  //   });
-  // });
+      return store
+        .dispatch(actions.getMovieSearch({ queryString: "test" }))
+        .then(() => {
+          actualResult = store.getActions();
+          expectedResult = [actions.fetchMovies(), actions.setError(error)];
+          return expect(actualResult).toEqual(expectedResult);
+        });
+    });
+  });
 
-  // describe("getNewPageMovieSearch action creator", () => {
-  //   it("should set the market tops data in state", () => {
-  //     iexGet.topsData.mockResolvedValue(["data"]);
+  describe("getNewPageMovieSearch action creator", () => {
+    const store = mockStore({
+      movies: {
+        moviesList: { 1: [{ title: "test1" }], 2: [] }
+      }
+    });
+    it("should trigger a call to api and dispatch actions to set store with retrieved data", () => {
+      Axios.get.mockResolvedValue({
+        data: { page: 2, total_pages: 2, results: [{ title: "test2" }] }
+      });
+      return store
+        .dispatch(
+          actions.getNewPageMovieSearch({ queryString: "test", newPage: 2 })
+        )
+        .then(() => {
+          actualResult = store.getActions();
+          expectedResult = [
+            actions.fetchMovies(),
+            actions.setActivePage(2),
+            actions.setMoviesList({
+              1: [{ title: "test1" }],
+              2: [{ title: "test2" }]
+            }),
+            actions.setLoading(false)
+          ];
+          return expect(actualResult).toEqual(expectedResult);
+        });
+    });
 
-  //     return store.dispatch(actions.getMarketTops()).then(() => {
-  //       actualResult = store.getActions();
-  //       expectedResult = [
-  //         actions.fetchMarketTop(),
-  //         actions.setMarketTopData(["data"])
-  //       ];
-  //       return expect(actualResult).toEqual(expectedResult);
-  //     });
-  //   });
-
-  //   it("should trigger failure actions creator if rejected", () => {
-  //     iexGet.topsData.mockRejectedValue(error);
-
-  //     return store.dispatch(actions.getMarketTops()).then(() => {
-  //       actualResult = store.getActions();
-  //       expectedResult = [actions.setError(error.message)];
-  //       return expect(actualResult).toEqual(expectedResult);
-  //     });
-  //   });
-  // });
+    it("should trigger failure actions creator if rejected", () => {
+      store.clearActions();
+      Axios.get.mockRejectedValue(error);
+      return store
+        .dispatch(
+          actions.getNewPageMovieSearch({ queryString: "test", newPage: 2 })
+        )
+        .then(() => {
+          actualResult = store.getActions();
+          expectedResult = [actions.fetchMovies(), actions.setError(error)];
+          return expect(actualResult).toEqual(expectedResult);
+        });
+    });
+  });
 });

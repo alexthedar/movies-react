@@ -5,13 +5,15 @@ import * as actions from "../index";
 
 const mockStore = configureStore([thunk]);
 const store = mockStore({
-  market: {
-    marketTops: []
+  search: {
+    queryString: "",
+    activePage: 1,
+    totalPages: 1
   }
 });
 const error = { message: "error" };
 
-describe("marketActions creators", () => {
+describe("searchActions creators", () => {
   let expectedResult;
   let actualResult;
 
@@ -19,60 +21,81 @@ describe("marketActions creators", () => {
     store.clearActions();
   });
 
-  describe("fetchRefSymbols action creator", () => {
-    it("should create an action to fetch stock symbols data", () => {
-      actualResult = actions.fetchRefSymbols();
+  describe("setQueryString action creator", () => {
+    it("should create an action set the query string", () => {
+      const queryString = "test";
+      actualResult = actions.setQueryString(queryString);
       expectedResult = {
-        type: constants.GET_REF_SYMBOLS
+        type: constants.SET_QUERY_STRING,
+        queryString
       };
       expect(actualResult).toEqual(expectedResult);
     });
   });
 
-  describe("setRefSymbols action creator", () => {
-    it("should create an action to set stock symbols data", () => {
-      const refSymbols = ["test"];
-      actualResult = actions.setRefSymbols(refSymbols);
+  describe("setActivePage action creator", () => {
+    it("should create an action to set the active page", () => {
+      const activePage = 2;
+      actualResult = actions.setActivePage(activePage);
       expectedResult = {
-        type: constants.SET_REF_SYMBOLS,
-        refSymbols
+        type: constants.SET_ACTIVE_PAGE,
+        activePage
       };
       expect(actualResult).toEqual(expectedResult);
     });
   });
 
-  describe("setRefSymbolsFailure action creator", () => {
-    it("should create an action to set stock symbols data error", () => {
-      const error = "error";
-      store.dispatch(actions.setRefSymbolsFailure(error));
+  describe("setTotalPages action creator", () => {
+    it("should create an action to set the total pages", () => {
+      const totalPages = 99;
+      actualResult = actions.setTotalPages(totalPages);
+      expectedResult = {
+        type: constants.SET_TOTAL_PAGES,
+        totalPages
+      };
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
+
+  describe("searchMovies action creator", () => {
+    it("should create an action to set query string and trigger movie search", () => {
+      const queryString = "test";
+      store.dispatch(actions.searchMovies(queryString));
       actualResult = store.getActions();
-      expectedResult = [actions.setError(error.message)];
+      expectedResult = [
+        actions.setQueryString(queryString),
+        actions.fetchMovies()
+      ];
       expect(actualResult).toEqual(expectedResult);
     });
   });
 
-  describe("getRefSymbols action creator", () => {
-    it("should set the ref symbols data in state", () => {
-      iexGet.refDataSymbols.mockResolvedValue([{ symbol: "A" }]);
-
-      return store.dispatch(actions.getRefSymbols()).then(() => {
-        actualResult = store.getActions();
-        expectedResult = [
-          actions.fetchRefSymbols(),
-          actions.setRefSymbols(["A"])
-        ];
-        return expect(actualResult).toEqual(expectedResult);
-      });
+  describe("goToPage action creator", () => {
+    const store = mockStore({
+      search: {
+        queryString: "test",
+        activePage: 1,
+        totalPages: 1
+      },
+      movies: {
+        moviesList: {
+          1: [{ title: "test" }],
+          2: []
+        }
+      }
     });
-
-    it("should trigger failure actions creator if rejected", () => {
-      iexGet.refDataSymbols.mockRejectedValue(error);
-
-      return store.dispatch(actions.getRefSymbols()).then(() => {
-        actualResult = store.getActions();
-        expectedResult = [actions.setError(error.message)];
-        return expect(actualResult).toEqual(expectedResult);
-      });
+    it("it should only set activePage if store already has content", () => {
+      store.dispatch(actions.goToPage(1));
+      actualResult = store.getActions();
+      expectedResult = [actions.setActivePage(1)];
+      return expect(actualResult).toEqual(expectedResult);
+    });
+    it("it should setLoading and trigger api get if store does not have content", () => {
+      store.clearActions();
+      store.dispatch(actions.goToPage(2));
+      actualResult = store.getActions();
+      expectedResult = [actions.setLoading(true), actions.fetchMovies()];
+      return expect(actualResult).toEqual(expectedResult);
     });
   });
 });
