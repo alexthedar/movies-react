@@ -4,7 +4,6 @@ import Adapter from "enzyme-adapter-react-16";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import Puppeteer from "puppeteer";
 import App from "./App";
 import fakeData from "./store/__mocks__/fakeStore";
 

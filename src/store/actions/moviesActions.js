@@ -32,16 +32,12 @@ export const getMovieSearch = ({ queryString }) => {
     return axios
       .get(searchURL({ queryString }))
       .then(res => {
-        dispatch(actions.setActivePage(res.data.page));
-        dispatch(actions.setTotalPages(res.data.total_pages));
-        // make object of empty arrays = to total pages
         const moviesListObj = {};
-        for (let i = 1; i <= res.data.total_pages; i++) {
-          moviesListObj[i] = [];
-        }
+        dispatch(actions.setTotalPages(res.data.total_pages));
         // set empty array of page # to results
         moviesListObj[res.data.page] = res.data.results;
         dispatch(setMoviesList(moviesListObj));
+        dispatch(actions.setActivePage(res.data.page));
         return dispatch(actions.setLoading(false));
       })
       .catch(error => dispatch(actions.setError(error)));
@@ -55,9 +51,10 @@ export const getNewPageMovieSearch = ({ queryString, newPage }) => {
     return axios
       .get(searchURL({ queryString, activePage: newPage }))
       .then(res => {
-        dispatch(actions.setActivePage(res.data.page));
+        // add array of results with page as key to movie store list obj
         moviesList[res.data.page] = res.data.results;
         dispatch(setMoviesList(moviesList));
+        dispatch(actions.setActivePage(res.data.page));
         return dispatch(actions.setLoading(false));
       })
       .catch(error => dispatch(actions.setError(error)));

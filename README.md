@@ -7,6 +7,12 @@ npm install
 npm run start
 ```
 
+To run app with redux logger display in browser dev tools console use the following command:
+
+```
+npm run start:logger
+```
+
 ## Test
 
 To run testing once with a coverage report use the following command:
@@ -36,6 +42,7 @@ npm run test
 - UI testing through puppeteer or cypress has not been implemented because not in scope plus app is small enough that all aspects can be manually tested
 - unit tests are in the test folders next to each component / file that is being tested.
 - responsive table has been implemented based on specifications of design document but would not recommend because of layout problems on smaller devices.
+- New pages are loaded into store so they do not have to be loaded in again.
 
 ---
 

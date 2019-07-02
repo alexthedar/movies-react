@@ -79,8 +79,7 @@ describe("searchActions creators", () => {
       },
       movies: {
         moviesList: {
-          1: [{ title: "test" }],
-          2: []
+          1: [{ title: "test" }]
         }
       }
     });

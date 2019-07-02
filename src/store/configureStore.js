@@ -14,7 +14,9 @@ const middlewares = [thunk];
 if (process.env.NODE_ENV === "development") {
   const logger = createLogger(); // eslint-disable-line no-unused-vars
   // Uncomment the following code to enable verbose Redux logging for diagnosing Redux issues
-  // middlewares.push(logger);
+  if (process.env.REACT_APP_LOG_REDUX === "on") {
+    middlewares.push(logger);
+  }
 }
 
 export default function configureStore() {

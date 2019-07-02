@@ -71,9 +71,9 @@ describe("moviesActions creators", () => {
           actualResult = store.getActions();
           expectedResult = [
             actions.fetchMovies(),
-            actions.setActivePage(1),
             actions.setTotalPages(2),
-            actions.setMoviesList({ 1: [{ title: "test" }], 2: [] }),
+            actions.setMoviesList({ 1: [{ title: "test" }] }),
+            actions.setActivePage(1),
             actions.setLoading(false)
           ];
           return expect(actualResult).toEqual(expectedResult);
@@ -96,7 +96,7 @@ describe("moviesActions creators", () => {
   describe("getNewPageMovieSearch action creator", () => {
     const store = mockStore({
       movies: {
-        moviesList: { 1: [{ title: "test1" }], 2: [] }
+        moviesList: { 1: [{ title: "test1" }] }
       }
     });
     it("should trigger a call to api and dispatch actions to set store with retrieved data", () => {
@@ -111,11 +111,11 @@ describe("moviesActions creators", () => {
           actualResult = store.getActions();
           expectedResult = [
             actions.fetchMovies(),
-            actions.setActivePage(2),
             actions.setMoviesList({
               1: [{ title: "test1" }],
               2: [{ title: "test2" }]
             }),
+            actions.setActivePage(2),
             actions.setLoading(false)
           ];
           return expect(actualResult).toEqual(expectedResult);

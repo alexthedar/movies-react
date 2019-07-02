@@ -35,7 +35,7 @@ export const goToPage = newPage => {
     const { moviesList } = getState().movies;
 
     // only load data if page does not already have data
-    if (moviesList[newPage].length) {
+    if (moviesList[newPage]) {
       return dispatch(actions.setActivePage(newPage));
     } else {
       dispatch(actions.setLoading(true));
