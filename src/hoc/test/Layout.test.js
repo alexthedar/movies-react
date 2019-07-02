@@ -13,7 +13,6 @@ Enzyme.configure({ adapter: new Adapter() });
 const mockStore = configureStore([thunk]);
 let store = null;
 
-jest.mock("../../api/iex-get.js");
 const initialState = {
   error: null,
   ...fakeData

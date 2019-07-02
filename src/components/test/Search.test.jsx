@@ -3,12 +3,9 @@ import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { SearchForm, mapStateToProps } from "../Search";
 import { Form, Button } from "react-bootstrap";
-import { Typeahead } from "react-bootstrap-typeahead";
 import fakeData from "../../store/__mocks__/fakeStore";
 
 Enzyme.configure({ adapter: new Adapter() });
-
-jest.mock("../../api/iex-get.js");
 
 describe("SearchForm Component", () => {
   let wrapper = {};
@@ -28,11 +25,7 @@ describe("SearchForm Component", () => {
     expect(wrapper.exists()).toEqual(true);
   });
 
-  it("handleChange changes state via typeahead input ", () => {
-    const instance = wrapper.instance();
-    wrapper.find(Typeahead).simulate("change", "test");
-    expect(instance.state.searchText).toEqual("test");
-  });
+
 
   it("handleSelect changes state", () => {
     const instance = wrapper.instance();
@@ -51,7 +44,6 @@ describe("SearchForm Component", () => {
 
   it("has Form, TypeAhead, Button, Bootstrap(InputGroup), InputGroupAppend components", () => {
     expect(wrapper.find(Form)).toHaveLength(1);
-    expect(wrapper.find(Typeahead)).toHaveLength(1);
     expect(wrapper.find(Button)).toHaveLength(1);
     expect(wrapper.find("Bootstrap(InputGroup)")).toHaveLength(1);
     expect(wrapper.find("InputGroupAppend")).toHaveLength(1);

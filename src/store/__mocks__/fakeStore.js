@@ -1,95 +1,51 @@
 export default {
   app: {
-    error: '',
+    error: "",
     isFetching: false
   },
-  market: {
-    marketTops: [
-      {
-        askPrice: 1,
-        askSize: 2,
-        bidPrice: 3,
-        bidSize: 4,
-        lastSalePrice: 5,
-        lastSaleSize: 6,
-        lastSaleTime: 7,
-        lastUpdated: 8,
-        marketPercent: 9,
-        sector: "sector",
-        securityType: "security",
-        symbol: "SYMBOL",
-        volume: 10
-      },
-      {
-        askPrice: 11,
-        askSize: 21,
-        bidPrice: 31,
-        bidSize: 41,
-        lastSalePrice: 51,
-        lastSaleSize: 61,
-        lastSaleTime: 71,
-        lastUpdated: 81,
-        marketPercent: 91,
-        sector: "sector1",
-        securityType: "security1",
-        symbol: "TEST",
-        volume: 101
-      }
-    ]
+  movies: {
+    moviesList: {
+      1: [
+        {
+          adult: false,
+          id: 1,
+          original_title: "Tomb 1",
+          overview: "Lara 1",
+          poster_path: "/tomb1.jpg",
+          release_date: "2018-01-01",
+          title: "Tomb 1"
+        },
+        {
+          adult: false,
+          id: 2,
+          original_title: "Tomb 2",
+          overview: "Lara 2",
+          poster_path: "/tomb2.jpg",
+          release_date: "2017-01-01",
+          title: "Tomb 2"
+        }
+      ],
+      2: [
+        {
+          adult: false,
+          id: 3,
+          original_title: "Tomb 3",
+          overview: "Lara 3",
+          poster_path: "/tomb3.jpg",
+          release_date: "2016-01-01",
+          title: "Tomb 3"
+        },
+        {
+          adult: false,
+          id: 4,
+          original_title: "Tomb 4",
+          overview: "Lara 4",
+          poster_path: "/tomb4.jpg",
+          release_date: "2015-01-01",
+          title: "Tomb 4"
+        }
+      ]
+    }
   },
-  search: { refSymbolTypeAhead: ["A", "B", "C"] },
-  stockDetail: {
-    companyInfo: {
-      CEO: "CEO",
-      companyName: "NAME",
-      description: "DESC",
-      exchange: "EXCH",
-      industry: "industry",
-      issueType: "issueType",
-      sector: "sector",
-      symbol: "SYMB",
-      tags: ["tag"],
-      website: "http://www.test.com."
-    },
-    logo: "www.test.com",
-    news: [
-      {
-        datetime: "2019-04-09T16:27:44-04:00",
-        headline: "a headline",
-        image: "https://image.com",
-        related: "tags,1,2,3",
-        source: "source",
-        summary: "a summary",
-        url: "https://url.com"
-      },
-      {
-        datetime: "2019-05-09T16:27:44-04:00",
-        headline: "next headline",
-        image: "https://image.com",
-        related: "tags,1,2,3",
-        source: "source",
-        summary: "next summary",
-        url: "https://url.com"
-      }
-    ],
-    quotes: [
-      {
-        companyName: "companyName",
-        primaryExchange: "primaryExchange",
-        latestPrice: "latestPrice",
-        latestSource: "latestSource",
-        week52High: "week52High",
-        week52Low: "week52Low"
-      },
-      {
-        companyName: "companyName1",
-        primaryExchange: "primaryExchange1",
-        latestPrice: "latestPrice1",
-        latestSource: "latestSource1",
-        week52High: "week52High1",
-        week52Low: "week52Low1"
-      }
-    ],
-    stockSymbol: "SYMBOL"
-  }
+  search: { queryString: "raider", activePage: 1, totalPages: 2 }
 };

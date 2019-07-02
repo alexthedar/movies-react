@@ -5,13 +5,12 @@ import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import App from "./App";
-import fakeData from "../../store/__mocks__/fakeStore";
+import fakeData from "./store/__mocks__/fakeStore";
 
 Enzyme.configure({ adapter: new Adapter() });
 const mockStore = configureStore([thunk]);
 let store = null;
 
-jest.mock("../../api/iex-get.js");
 const initialState = {
   error: null,
   ...fakeData
@@ -31,6 +30,6 @@ describe("App Component", () => {
   });
 
   it("renders without crashing", () => {
-    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.exists()).toEqual(true);
   });
 });

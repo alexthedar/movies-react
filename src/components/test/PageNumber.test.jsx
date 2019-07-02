@@ -5,8 +5,6 @@ import { PageNumbers } from "../PageNumbers";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-jest.mock("../../api/iex-get.js");
-
 describe("PageNumbers Component", () => {
   let wrapper = {};
 

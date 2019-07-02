@@ -7,8 +7,6 @@ import { MarketTable, mapStateToProps } from "../market";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-jest.mock("../../api/iex-get.js");
-
 describe("MarketTable Component", () => {
   let wrapper = {};
 

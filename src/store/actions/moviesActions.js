@@ -32,6 +32,7 @@ export const getMovieSearch = ({ queryString }) => {
     return axios
       .get(searchURL({ queryString }))
       .then(res => {
+        console.log("TCL: getMovieSearch -> res", res);
         dispatch(actions.setActivePage(res.data.page));
         dispatch(actions.setTotalPages(res.data.total_pages));
         // make object of empty arrays = to total pages
