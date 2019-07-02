@@ -19,10 +19,10 @@ to include a coverage report use the following command (include the extra -- bet
 npm run test:coverage
 ```
 
-## e2e Test
+## Cypress Test
 
 ```
-npm run test:e2e
+npm run test:cypress
 ```
 
 ### Acceptance Criteria

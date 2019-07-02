@@ -6,7 +6,7 @@ import rootReducer from "./reducers/rootReducer";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : null || compose;
 
 const middlewares = [thunk];
@@ -14,7 +14,7 @@ const middlewares = [thunk];
 if (process.env.NODE_ENV === "development") {
   const logger = createLogger(); // eslint-disable-line no-unused-vars
   // Uncomment the following code to enable verbose Redux logging for diagnosing Redux issues
-  middlewares.push(logger);
+  // middlewares.push(logger);
 }
 
 export default function configureStore() {

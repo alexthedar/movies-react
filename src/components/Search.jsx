@@ -39,6 +39,7 @@ export class SearchForm extends Component {
               </InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl
+              id="search-box"
               autoFocus
               placeholder="Search"
               aria-label="Search"
